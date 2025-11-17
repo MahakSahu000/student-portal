@@ -1,1 +1,53 @@
 @import "tailwindcss";
+
+/* Base tweaks — force dark sitewide */
+html, body, #root { height: 100%; }
+body { @apply bg-gray-950 text-gray-100; }
+
+/***** App layout helpers *****/
+.app-shell { @apply min-h-screen bg-gray-950; }
+.container-prose { @apply mx-auto max-w-7xl px-4 sm:px-6 lg:px-8; }
+.card { @apply rounded-xl border border-white/10 p-4 bg-gray-900 text-gray-100 shadow-sm; }
+.card-hover { @apply hover:shadow-lg hover:-translate-y-[1px] transition-all; }
+.section-title { @apply text-2xl font-semibold mb-4; }
+
+/***** UI primitives *****/
+.btn { @apply inline-flex items-center justify-center rounded-lg px-4 py-2 font-medium transition-colors; }
+.btn-primary { @apply bg-blue-600 text-white hover:bg-blue-700; }
+.btn-ghost { @apply bg-white/10 text-white hover:bg-white/20; }
+.input { @apply w-full rounded-lg border border-white/10 bg-gray-900 text-gray-100 px-3 py-2 outline-none focus:ring-2 focus:ring-blue-500 placeholder-gray-400; }
+.muted { @apply text-gray-400; }
+
+/* Accent presets (override primary button) */
+.accent-blue .btn-primary { @apply bg-blue-600 hover:bg-blue-700; }
+.accent-violet .btn-primary { @apply bg-violet-600 hover:bg-violet-700; }
+.accent-emerald .btn-primary { @apply bg-emerald-600 hover:bg-emerald-700; }
+
+/* Compact mode */
+body.compact .card { @apply p-3; }
+body.compact .section-title { @apply mb-2 text-xl; }
+body.compact .container-prose { @apply px-3 sm:px-4 lg:px-6; }
+body.compact .btn { @apply px-3 py-1.5 text-sm; }
+
+/* Calendar helpers */
+.cal-grid { display: grid; grid-template-columns: repeat(7, minmax(0,1fr)); gap: .35rem; }
+.cal-cell { @apply rounded-lg border border-white/10 bg-gray-900 p-2 min-h-[72px]; }
+.cal-cell--muted { @apply text-gray-500; }
+.cal-dot { @apply inline-block h-2 w-2 rounded-full bg-blue-400; }
+
+/* Hero dark panel with subtle grid */
+.hero-panel { position: relative; }
+.hero-panel::before {
+  content: "";
+  position: absolute; inset: 0;
+  background: radial-gradient(circle at 20% 20%, rgba(59,130,246,0.15), transparent 40%),
+              radial-gradient(circle at 80% 0%, rgba(168,85,247,0.12), transparent 45%),
+              linear-gradient(to bottom, #0b0f19, #0a0e17);
+  opacity: 1;
+}
+.hero-panel > * { position: relative; }
+
+/* Fancy gradients */
+.gradient-text { @apply bg-clip-text text-transparent; background-image: linear-gradient(90deg, #60a5fa, #a78bfa); }
+.badge { @apply inline-flex items-center gap-1 rounded-full border border-white/10 bg-white/10 px-2 py-0.5 text-[11px] tracking-wide text-white/80; }
+.icon-badge { @apply inline-flex items-center justify-center h-9 w-9 rounded-lg bg-white/10 text-white; }
